@@ -1,4 +1,4 @@
-# NodeVNCServer
+# NodeVNCViewer
 NodeVNCServer, TightVNC kullanan bilgisayarları web üzerinden kontrol etmenizi sağlayan bir NodeJS uygulamasıdır.
 
 ## Kurulum ve Kullanım

@@ -32,7 +32,7 @@
     width: auto;
 }
 
-#screen {
+#normalScreen {
     position: absolute;
     top: 0;
     left: 0;
@@ -41,4 +41,51 @@
     transition: opacity 1s;
     opacity: 0;
     z-index: 1; /* Ensure canvas is below other elements */
+}
+
+#screen {
+    margin: 50px calc((100% - 1280px) / 2) 0;
+    aspect-ratio: 16/9;
+    border: 0;
+    height: 720px;
+    transition: all 0.3s ease;
+}
+/* Tam ekran modu için stil */
+.fullscreen-mode #screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    z-index: 9999;
+}
+/* header,bannerdiv and footer are my html tag class/id names.Type the name of the tag you want to hide. */
+.fullscreen-mode .header,
+.fullscreen-mode .bannerdiv,
+.fullscreen-mode .footer {
+    display: none;
+}
+/* Tam ekran butonu stili */
+#fullscreenBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000; /* VNC'nin üzerinde görünmesi için z-index arttırıldı */
+    padding: 10px 20px;
+    background-color: rgba(0, 123, 255, 0.8); /* Yarı saydam arka plan */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Gölge eklendi */
+}
+#fullscreenBtn:hover {
+    background-color: rgba(0, 86, 179, 0.9);
+}
+/* Tam ekran modunda butonun konumu */
+.fullscreen-mode #fullscreenBtn {
+    top: 10px;
+    right: 10px;
+    bottom: auto;
 }

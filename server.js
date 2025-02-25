@@ -7,10 +7,11 @@ const cors = require('cors');
 const app = express();
 
 var hizBoleni = 2;// Screen image interval for bad connections.Default value is 2.
-
+//iframe için uzak site cors linki.
+/*
 app.use(cors({
     origin: 'http://XXX.XXX.XXX.XXX:XXXX'// Cors website link.
-}));
+}));*/
 
 let clients = [];
 let activeConnections = new Map();

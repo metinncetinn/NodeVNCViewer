@@ -25,11 +25,19 @@
 }
 
 .form-wrapper .form-horizontal .controls {
-    margin-left: 90px;
+    position: absolute;
+    right: 0;
 }
 
-.form-wrapper .form-horizontal .control-label {
-    width: auto;
+.control-group{
+    display:flex;
+    grid-template-columns: auto auto;
+    margin-top: 15px;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
 }
 
 #normalScreen {

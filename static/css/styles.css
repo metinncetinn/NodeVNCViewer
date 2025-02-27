@@ -25,14 +25,21 @@
 }
 
 .form-wrapper .form-horizontal .controls {
-    margin-left: 90px;
+    position: absolute;
+    right: 0;
+}
+
+.control-group{
+    display:flex;
+    grid-template-columns: auto auto;
+    margin-top: 15px;
 }
 
 .form-wrapper .form-horizontal .control-label {
     width: auto;
 }
 
-Screen {
+#Screen {
     position: absolute;
     top: 0;
     left: 0;

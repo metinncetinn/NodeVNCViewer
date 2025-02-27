@@ -1,0 +1,103 @@
+.form-wrapper {
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-origin: center center;
+    -moz-transform-origin: center center;
+    transform-origin: center center;
+    width: 320px;
+    margin: auto;
+    margin-top: 300px;
+    display: block;
+    opacity: 1;
+    z-index: 1000; /* Ensure form is above other elements */
+    position: relative; /* Ensure z-index works */
+}
+
+.form-wrapper-hidden {
+    -webkit-transform: rotateZ(190deg) scale(7);
+    -moz-transform: rotateZ(190deg);
+    transform: rotateZ(190deg);
+    opacity: 0;
+}
+
+.form-wrapper .form-horizontal .controls {
+    margin-left: 90px;
+}
+
+.form-wrapper .form-horizontal .control-label {
+    width: auto;
+}
+
+#normalScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 1s;
+    opacity: 0;
+    z-index: 1; /* Ensure canvas is below other elements */
+}
+
+#screen {
+    margin: 50px calc((100% - 1280px) / 2) 0;
+    aspect-ratio: 16/9;
+    border: 0;
+    height: 720px;
+    transition: all 0.3s ease;
+}
+/* Tam ekran modu için stil */
+.fullscreen-mode #screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    z-index: 9999;
+}
+/* header is my html tag that have to hide class/id names.Type the name of the tag you want to hide. */
+.fullscreen-mode .header{
+    display: none;
+}
+/* Tam ekran butonu stili */
+#fullscreenBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000; /* VNC'nin üzerinde görünmesi için z-index arttırıldı */
+    padding: 10px 20px;
+    background-color: rgba(0, 123, 255, 0.8); /* Yarı saydam arka plan */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Gölge eklendi */
+}
+#fullscreenBtn:hover {
+    background-color: rgba(0, 86, 179, 0.9);
+}
+/* Tam ekran modunda butonun konumu */
+.fullscreen-mode #fullscreenBtn {
+    top: 10px;
+    right: 10px;
+    bottom: auto;
+}
+/*Advanced.html CSS*/
+body{
+    background: linear-gradient(-135deg, #2fadec7a, #a5add47c);
+}
+.header{
+    width:100%;
+    height: 100px;
+    background-color: aliceblue;
+}
+.nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

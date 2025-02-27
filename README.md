@@ -30,6 +30,10 @@ It is sufficient to install TightVNC on the computer to be controlled and run it
 
   'pm2 save'
 
+- To start automatically when the computer is turned on (Linux):
+  
+  'pm2 startup'
+
 - To start automatically when the computer is turned on (Windows):
 
   Create a file named pm2-start.txt
@@ -101,6 +105,10 @@ Kontrol edilecek bilgisayara TightVNC kurmanız ve 5900 portunda çalıştırman
   Düzenli yeniden başlatma için: 'pm2 start server.js --cron-restart "0 */1 * * *"' (her saat başı yeniden başlatır)
 
   'pm2 save'
+
+- Bilgisayar açıldığında otomatik başlatma için(Linux):
+  
+  'pm2 startup'
 
 - Bilgisayar açıldığında otomatik başlatma için(Windows):
 

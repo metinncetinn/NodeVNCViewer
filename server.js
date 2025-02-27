@@ -55,12 +55,7 @@ function createRfbConnection(config, socket, userId) {
 
             initInterval = setInterval(() => {
                 try {
-                    r.requestUpdate(true,
-                        r.width / hizBoleni * i,
-                        r.height / hizBoleni * j,
-                        r.width / hizBoleni,
-                        r.height / hizBoleni
-                    );
+                    r.requestUpdate(true, r.width / hizBoleni * i,r.height / hizBoleni * j, r.width / hizBoleni, r.height / hizBoleni);
                     if (i < hizBoleni - 1) {
                         i++;
                     } else if (j < hizBoleni - 1) {
@@ -84,7 +79,7 @@ function createRfbConnection(config, socket, userId) {
                                 } catch (error) {
                                     console.error(`Error requesting full screen update for user ${userId}:`, error);
                                 }
-                            }, 300);
+                            }, 200);
                         }
                     }
                 } catch (error) {

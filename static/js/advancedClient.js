@@ -179,6 +179,7 @@
     document.getElementById('loginBtn').addEventListener('click', function () {
         console.log("loginBtn click");
         try {
+            document.getElementById('screen').style.display='inline';
             var canvas = document.getElementById('screen'),
                 screen = new Screen(canvas),
                 client = new Client(screen);

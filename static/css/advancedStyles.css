@@ -97,6 +97,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 }
 /*Advanced.html CSS*/
 body{
+    min-height: 955px;;
     background: linear-gradient(-135deg, #2fadec7a, #a5add47c);
 }
 .header{

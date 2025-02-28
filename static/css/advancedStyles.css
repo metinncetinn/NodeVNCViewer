@@ -13,8 +13,8 @@
     margin-top: 300px;
     display: block;
     opacity: 1;
-    z-index: 1000; /* Ensure form is above other elements */
-    position: relative; /* Ensure z-index works */
+    z-index: 1000;
+    position: relative;
 }
 
 .form-wrapper-hidden {
@@ -48,7 +48,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
     height: 100%;
     transition: opacity 1s;
     opacity: 0;
-    z-index: 1; /* Ensure canvas is below other elements */
+    z-index: 1;
 }
 
 #screen {
@@ -95,7 +95,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
     right: 10px;
     bottom: auto;
 }
-/*Advanced.html CSS*/
+
 body{
     min-height: 955px;;
     background: linear-gradient(-135deg, #2fadec7a, #a5add47c);

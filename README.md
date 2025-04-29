@@ -65,7 +65,7 @@ It is sufficient to install TightVNC on the computer to be controlled and run it
 - 'pm2 logs "server"' - Shows log records
 
 ### Using with iframe on Your Site
-To use VNCViewer on your site, add the iframe tag and write the link (server ip + server port) where the nodejs server is running as the source. This link is also the one in your client.js file. (For example: 192.168.1.1:8090/index.html). Then, in the server.js file, enter the address of the website you will use in the cors section.
+To use VNCViewer on your site, add the iframe tag and write the link (server ip + server port) where the nodejs server is running as the source. This link is also the one in your client.js file. (For example: 192.168.1.10:8090/index.html). Then, in the server.js file, enter the address of the website you will use in the cors section.
 
 ### Troubleshooting
 If you experience issues with the server:
@@ -142,7 +142,7 @@ Kontrol edilecek bilgisayara TightVNC kurmanız ve 5900 portunda çalıştırman
 - 'pm2 logs "server"' - Log kayıtlarını gösterir
 
 ### iframe ile Sitenizde kullanma
-VNCViewer'ı sitenizde kullanmak için iframe etiketini eklemeniz ve kaynak kısmına nodejs serverini çalıştırığınız linki(server ip + server port) yazmalısınız. Bu link aynı zamanda client.js dosyanızdaki link. ( Örnegin: 192.168.1.1:8090/index.html). Ardından server.js kısmından cors kısmından kullanacağınız websitesinin adresini girmelisiniz.
+VNCViewer'ı sitenizde kullanmak için iframe etiketini eklemeniz ve kaynak kısmına nodejs serverini çalıştırığınız linki(server ip + server port) yazmalısınız. Bu link aynı zamanda client.js dosyanızdaki link. ( Örnegin: 192.168.1.10:8090/index.html). Ardından server.js kısmından cors kısmından kullanacağınız websitesinin adresini girmelisiniz.
 
 ### Sorun Giderme
 Server ile ilgili sorun yaşarsanız:

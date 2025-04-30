@@ -146,5 +146,5 @@ VNCViewer'ı sitenizde kullanmak için iframe etiketini eklemeniz ve kaynak kıs
 
 ### Sorun Giderme
 Server ile ilgili sorun yaşarsanız:
-- 'npm outdated' - Eskimiş paketleri gösterir
-- 'npm update' - Eskimiş paketleri günceller
+- 'npm outdated' - Eskimiş/Eksik paketleri gösterir
+- 'npm update' - Eskimiş/Eksik paketleri günceller

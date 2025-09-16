@@ -11,6 +11,7 @@
         this._scale = { x: 1, y: 1 };
         this._actualWidth = 0;
         this._actualHeight = 0;
+        this._displayScale = 1; // Ekran ölçekleme faktörü
     }
 
     Screen.prototype.drawRect = function (rect) {
@@ -28,10 +29,77 @@
         };
     };
 
+    // Yeni fonksiyon: Canvas'ı ekrana sığacak şekilde ölçeklendir
+    Screen.prototype.fitToScreen = function() {
+        var canvas = this._canvas;
+        var isFullscreen = document.body.classList.contains('fullscreen-mode');
+        
+        if (isFullscreen) {
+            // Tam ekran modunda
+            var maxWidth = window.innerWidth;
+            var maxHeight = window.innerHeight;
+            
+            // Oran hesapla (aspect ratio koruyarak)
+            var scaleX = maxWidth / this._actualWidth;
+            var scaleY = maxHeight / this._actualHeight;
+            this._displayScale = Math.min(scaleX, scaleY);
+            
+            var displayWidth = Math.floor(this._actualWidth * this._displayScale);
+            var displayHeight = Math.floor(this._actualHeight * this._displayScale);
+            
+            canvas.style.width = displayWidth + 'px';
+            canvas.style.height = displayHeight + 'px';
+            
+            // Tam ekranda ortalama
+            canvas.style.position = 'fixed';
+            canvas.style.top = '50%';
+            canvas.style.left = '50%';
+            canvas.style.transform = 'translate(-50%, -50%)';
+            canvas.style.margin = '0';
+        } else {
+            // Normal modda - CSS'deki değerlerle uyumlu
+            var headerHeight = 100; // Header yüksekliği
+            var availableHeight = window.innerHeight - headerHeight - 100; // Alt boşluk için 100px
+            var availableWidth = window.innerWidth - 80; // Yan boşluklar için 80px
+            
+            // CSS'de tanımlı maksimum boyutları kontrol et
+            var maxCSSWidth = 1280;
+            var maxCSSHeight = 720;
+            
+            // Mevcut CSS limitleriyle çalış
+            var targetWidth = Math.min(availableWidth, maxCSSWidth);
+            var targetHeight = Math.min(availableHeight, maxCSSHeight);
+            
+            // Oran hesapla
+            var scaleX = targetWidth / this._actualWidth;
+            var scaleY = targetHeight / this._actualHeight;
+            this._displayScale = Math.min(scaleX, scaleY, 1); // 1'den büyük olmasın
+            
+            var displayWidth = Math.floor(this._actualWidth * this._displayScale);
+            var displayHeight = Math.floor(this._actualHeight * this._displayScale);
+            
+            canvas.style.width = displayWidth + 'px';
+            canvas.style.height = displayHeight + 'px';
+            
+            // CSS'deki stil ayarlarını koru
+            canvas.style.position = 'static';
+            canvas.style.transform = 'none';
+            canvas.style.margin = '50px auto 0';
+            canvas.style.display = 'block';
+        }
+        
+        console.log(`Mode: ${isFullscreen ? 'Fullscreen' : 'Normal'}, Display scale: ${this._displayScale}, Size: ${canvas.style.width} x ${canvas.style.height}`);
+        
+        this.updateScale();
+    };
+
     Screen.prototype.updateScale = function () {
         var rect = this._canvas.getBoundingClientRect();
+        // Hem canvas'ın iç ölçeği hem de display ölçeği hesaplanır
         this._scale.x = this._actualWidth / rect.width;
         this._scale.y = this._actualHeight / rect.height;
+        
+        console.log(`Scale factors: x=${this._scale.x}, y=${this._scale.y}`);
     };
 
     Screen.prototype.getMousePosition = function (pageX, pageY) {
@@ -66,8 +134,22 @@
             }, false);
             // Pencere yeniden boyutlandırıldığında scale'i güncelle
             window.addEventListener('resize', function () {
-                self.updateScale();
+                // Pencere boyutu değiştiğinde yeniden sığdır
+                self.fitToScreen();
             });
+            
+            // Fullscreen modu değişikliklerini dinle
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                        // Body'nin class'ı değiştiğinde (fullscreen toggle) yeniden ölçeklendir
+                        setTimeout(function() {
+                            self.fitToScreen();
+                        }, 50); // CSS transition'ın tamamlanması için kısa bekleme
+                    }
+                });
+            });
+            observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
         } catch (error) {
             console.error('Mouse handler error:', error);
         }
@@ -143,13 +225,18 @@
             this._socket.on('init', function (config) {
                 console.log("Init received", config);
                 var canvas = self._screen.getCanvas();
+                
+                // Canvas'ın gerçek çözünürlüğünü ayarla
                 canvas.width = config.width;
                 canvas.height = config.height;
+                
                 // Gerçek boyutları sakla
                 self._screen._actualWidth = config.width;
                 self._screen._actualHeight = config.height;
-                // İlk scale hesaplaması
-                self._screen.updateScale();
+                
+                // Canvas'ı ekrana sığacak şekilde ölçeklendir
+                self._screen.fitToScreen();
+                
                 if (typeof callback === 'function') callback();
             });
 
